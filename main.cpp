@@ -19,21 +19,24 @@ static void resize(int width, int height)
 float x=-0.8f;
 float y=0.8f;
 int counter=1;
+int k;
 
 void glHelper()
 {
-    for(int i=0;i<1;i++)
+    for(int i=0;i<8;i++)
     {
-        for(int j=0;j<8;j++)
+        for(int j=0,k=counter;j<8;j++)
         {
+
             glBegin(GL_POLYGON);
-            if(counter%2==0){
-                glColor3f(1.0f,0.0f,0.0f);
+            if(k%2==0){
+                glColor3f(0.0f,0.0f,0.0f);
+                cout<<"BLACK"<<endl;
             }
             else{
-                glColor3f(0.0f,1.0f,0.0f);
+                glColor3f(1.0f,1.0f,1.0f);
+                cout<<"WHITE"<<endl;
             }
-            glColor3f(1.0f,0.0f,0.0f);
             glVertex2f(x+0.2,y-0.2);
             glVertex2f(x+0.2,y);
             glVertex2f(x,y);
@@ -45,12 +48,26 @@ void glHelper()
             cout<<(x+0.2)<<","<<y-0.2<<endl;
             cout<<x<<","<<y<<endl;
             cout<<x<<","<<y-0.2<<endl;
-            cout<<counter<<endl;
+            cout<<k<<endl;
             cout<<endl;
             x=x+0.2f;
-            counter++;
+            k++;
         }
+        counter++;
+        x=-0.8f;
+        y=y-0.2;
     }
+    glColor3f(0.0f,0.0f,0.0f);
+    glBegin(GL_LINES);
+    glVertex2f(-0.8,0.8);
+    glVertex2f(0.8f,0.8f);
+    glVertex2f(0.8,0.8f);
+    glVertex2f(0.8f,-0.8f);
+    glVertex2f(0.8f,-0.8f);
+    glVertex2f(-0.8f,-0.8f);
+    glVertex2f(-0.8f,-0.8f);
+    glVertex2f(-0.8f,0.8f);
+    glEnd();
 }
 
 static void display()
